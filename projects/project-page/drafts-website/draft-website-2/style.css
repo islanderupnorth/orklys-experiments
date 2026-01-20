@@ -309,10 +309,8 @@ button {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-md);
-  padding: var(--space-md) 0;
+  padding-top: var(--space-md);
   border-top: 1px solid var(--gray-200);
-  border-bottom: 1px solid var(--gray-200);
-  margin-bottom: var(--space-lg);
 }
 
 .quick-stat {
@@ -711,7 +709,7 @@ button {
 /* Simple Benefits Grid */
 .benefits-grid-simple {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-xl);
 }
 
@@ -1626,7 +1624,7 @@ button {
    ======================================== */
 
 .testimonials {
-  background: var(--gray-100);
+  /* background: var(--gray-100); */
   padding: var(--space-4xl) 0;
 }
 
