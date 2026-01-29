@@ -65,18 +65,20 @@ Professional but approachable. No jargon. Direct language paired with generous w
 ### Font Stack (defined in `app/layout.tsx` and `globals.css`)
 
 ```css
---font-family-display: "Space Grotesk"; /* Headings, CTAs, display text */
---font-family-body: "DM Sans"; /* Body text */
+--font-family-display: "Nunito"; /* Headings, CTAs, display text */
+--font-family-body: "Open Sans"; /* Body text */
 ```
+
+**Pairing rationale:** Nunito's rounded terminals create a friendly, approachable feel for headings. Open Sans complements this with similar warmth while maintaining excellent readability for body text. Both are Google Fonts with strong language support.
 
 ### Font Usage Rules
 
-| Element           | Font          | Class                               |
-| ----------------- | ------------- | ----------------------------------- |
-| Headings (h1-h6)  | Space Grotesk | Applied via `Heading` component     |
-| CTA Buttons       | Space Grotesk | `.font-display` in Button component |
-| Body text         | DM Sans       | Default body font                   |
-| Display/hero text | Space Grotesk | `.font-display` utility             |
+| Element           | Font      | Class                               |
+| ----------------- | --------- | ----------------------------------- |
+| Headings (h1-h6)  | Nunito    | Applied via `Heading` component     |
+| CTA Buttons       | Nunito    | `.font-display` in Button component |
+| Body text         | Open Sans | Default body font                   |
+| Display/hero text | Nunito    | `.font-display` utility             |
 
 ### MANDATORY: Typography Components
 
