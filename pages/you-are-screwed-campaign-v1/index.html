@@ -1,0 +1,2102 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Follow Your Krone — See where your energy money ends up</title>
+
+    <meta
+      property="og:title"
+      content="Follow Your Krone — Where does your energy money go?"
+    />
+    <meta
+      property="og:description"
+      content="For every krone on your energy bill, only 16–22 øre is actual electricity. Follow your krone through the system."
+    />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="description"
+      content="Trace a single krone from your electricity bill through six layers of tariffs and fees. See where the money ends up — and what happens when your street owns the infrastructure."
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ============================================ -->
+    <!-- ACT 1: THE ORDINARY WORLD — HERO            -->
+    <!-- ============================================ -->
+    <section id="hero">
+      <div class="grain" aria-hidden="true"></div>
+      <div class="hero-content">
+        <div class="hero-overline anim-in">
+          <span class="lang-en">A story about your electricity bill</span
+          ><span class="lang-da">En fortælling om din elregning</span>
+        </div>
+        <h1 class="hero-h1 anim-in" style="--d: 0.12s">
+          <span class="lang-en">Follow your krone,-</span
+          ><span class="lang-da">Følg din krone,-</span>
+        </h1>
+        <p class="hero-intro anim-in" style="--d: 0.24s">
+          <span class="lang-en"
+            >You pay an electricity bill every month. Everyone does.<br />But
+            have you ever followed the money?</span
+          ><span class="lang-da"
+            >Du betaler en elregning hver måned. Det gør alle.<br />Men har du
+            nogensinde fulgt pengene?</span
+          >
+        </p>
+        <p class="hero-intro-sub anim-in" style="--d: 0.36s">
+          <span class="lang-en"
+            >Not just glanced at the total — but traced a single krone from your
+            account, through the system, all the way to the other end?</span
+          ><span class="lang-da"
+            >Ikke bare set tallet — men fulgt en enkelt krone fra din konto,
+            gennem systemet, helt ud til den anden ende?</span
+          >
+        </p>
+
+        <div class="guess-block anim-in" style="--d: 0.5s">
+          <p class="guess-question">
+            <span class="lang-en"
+              >How much of your electricity bill is actually electricity?</span
+            ><span class="lang-da"
+              >Hvor meget af din elregning tror du er faktisk el?</span
+            >
+          </p>
+          <div class="guess-options" id="guess-options">
+            <button class="guess-btn" data-pct="70">70%</button>
+            <button class="guess-btn" data-pct="45">45%</button>
+            <button class="guess-btn" data-pct="20">20%</button>
+          </div>
+          <div class="guess-answer hidden" id="guess-answer">
+            <p class="guess-reveal">
+              <span class="lang-en"
+                >The average is <strong>16–22 øre</strong> per krone.</span
+              ><span class="lang-da"
+                >Gennemsnittet er <strong>16–22 øre</strong> per krone.</span
+              >
+            </p>
+            <p class="guess-follow">
+              <span class="lang-en"
+                >The rest is tariffs, fees, and charges for infrastructure
+                you've never seen.</span
+              ><span class="lang-da"
+                >Resten er tariffer, gebyrer og afgifter for infrastruktur du
+                aldrig har set.</span
+              >
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- ACT 2: THE REVELATION — KRONE'S JOURNEY     -->
+    <!-- ============================================ -->
+    <section id="krone-journey">
+      <div class="journey-intro">
+        <div class="container narrow">
+          <h2 class="section-heading scroll-reveal">
+            <span class="lang-en">Follow your krone through the system.</span
+            ><span class="lang-da">Følg din krone gennem systemet.</span>
+          </h2>
+          <p
+            class="section-lead scroll-reveal w-full text-center"
+            style="--d: 0.1s"
+          >
+            <span class="lang-en"
+              >Here's one krone from your electricity bill. Let's see where it
+              ends up.</span
+            ><span class="lang-da"
+              >Her er én krone fra din elregning. Lad os se hvor den
+              ender.</span
+            >
+          </p>
+        </div>
+      </div>
+
+      <div class="journey-scroll-area">
+        <div class="journey-figure">
+          <div class="krone-bar-outer">
+            <div class="krone-bar" id="krone-bar">
+              <div
+                class="krone-layer"
+                id="kl-nettarif"
+                style="--clr: var(--c-nettarif)"
+              ></div>
+              <div
+                class="krone-layer"
+                id="kl-elafgift"
+                style="--clr: var(--c-elafgift)"
+              ></div>
+              <div
+                class="krone-layer"
+                id="kl-moms"
+                style="--clr: var(--c-moms)"
+              ></div>
+              <div
+                class="krone-layer"
+                id="kl-system"
+                style="--clr: var(--c-system)"
+              ></div>
+              <div
+                class="krone-layer"
+                id="kl-trans"
+                style="--clr: var(--c-trans)"
+              ></div>
+              <div
+                class="krone-layer krone-layer--el"
+                id="kl-el"
+                style="--clr: var(--c-el)"
+              ></div>
+            </div>
+            <div class="krone-remainder" id="krone-remainder">
+              <span class="remainder-label"
+                ><span class="lang-en">Remaining</span
+                ><span class="lang-da">Ubrugt</span></span
+              >
+            </div>
+          </div>
+          <div class="layer-tag" id="layer-tag">
+            <span class="tag-name" id="tag-name"></span>
+            <span class="tag-amount" id="tag-amount"></span>
+          </div>
+        </div>
+
+        <div class="journey-steps">
+          <div class="step" data-layer="nettarif" data-target="28">
+            <div class="step-inner">
+              <span class="step-ore">28 øre</span>
+              <h3 class="step-title">
+                <span class="lang-en">Grid Tariff</span
+                ><span class="lang-da">Nettarif</span>
+              </h3>
+              <p>
+                <span class="lang-en"
+                  >First, 28 øre disappear. That's what it costs to maintain the
+                  grid that carries electricity to your outlet. A grid you use
+                  every day. A grid you don't own.</span
+                ><span class="lang-da"
+                  >Først forsvinder 28 øre. Det er hvad det koster at
+                  vedligeholde det net der fører strømmen til din stikkontakt.
+                  Et net du bruger hver dag. Et net du ikke ejer.</span
+                >
+              </p>
+            </div>
+          </div>
+
+          <div class="step" data-layer="elafgift" data-target="22">
+            <div class="step-inner">
+              <span class="step-ore">22 øre</span>
+              <h3 class="step-title">
+                <span class="lang-en">Electricity Tax</span
+                ><span class="lang-da">Elafgift</span>
+              </h3>
+              <p>
+                <span class="lang-en"
+                  >Then another 22 øre. A tax that once funded the green
+                  transition. That was a good idea. The tax is still here. The
+                  purpose has gotten a bit hazy.</span
+                ><span class="lang-da"
+                  >Så 22 øre mere. En afgift der engang finansierede den grønne
+                  omstilling. Det var en god idé. Afgiften eksisterer stadig.
+                  Formålet er lidt mere uklart.</span
+                >
+              </p>
+            </div>
+          </div>
+
+          <div class="step" data-layer="moms" data-target="20">
+            <div class="step-inner">
+              <span class="step-ore">20 øre</span>
+              <h3 class="step-title">
+                <span class="lang-en">VAT</span
+                ><span class="lang-da">Moms</span>
+              </h3>
+              <p>
+                <span class="lang-en"
+                  >20 øre to VAT. Of course. You pay VAT on the tariffs. You pay
+                  VAT on the taxes. You pay VAT on the fees that pay for the
+                  infrastructure that delivers the electricity you haven't even
+                  gotten to yet.</span
+                ><span class="lang-da"
+                  >20 øre til moms. Selvfølgelig. Du betaler moms på tarifferne.
+                  Du betaler moms på afgifterne. Du betaler moms på de gebyrer
+                  der betaler for infrastrukturen der leverer den el du endnu
+                  ikke har nået til.</span
+                >
+              </p>
+            </div>
+          </div>
+
+          <div class="step" data-layer="system" data-target="8">
+            <div class="step-inner">
+              <span class="step-ore">8 øre</span>
+              <h3 class="step-title">
+                <span class="lang-en">System Tariff</span
+                ><span class="lang-da">Systemtarif</span>
+              </h3>
+              <p>
+                <span class="lang-en"
+                  >8 øre to the system tariff. The price of balancing the grid —
+                  making sure supply and demand match, second by second. An
+                  important job. A job you have zero say in.</span
+                ><span class="lang-da"
+                  >8 øre til systemtarif. Prisen for at balancere elnettet —
+                  sørge for at udbud og efterspørgsel matcher sekund for sekund.
+                  Et vigtigt job. Et job du ingen indflydelse har på.</span
+                >
+              </p>
+            </div>
+          </div>
+
+          <div class="step" data-layer="trans" data-target="6">
+            <div class="step-inner">
+              <span class="step-ore">6 øre</span>
+              <h3 class="step-title">
+                <span class="lang-en">Transmission Tariff</span
+                ><span class="lang-da">Transmissionstarif</span>
+              </h3>
+              <p>
+                <span class="lang-en"
+                  >6 øre to the transmission tariff. The price of moving
+                  electricity hundreds of kilometres from the power plant to
+                  your town. Distance costs. Every layer of infrastructure along
+                  the way takes its cut.</span
+                ><span class="lang-da"
+                  >6 øre til transmissionstarif. Prisen for at transportere el
+                  hundredevis af kilometer fra kraftværk til din by. Afstanden
+                  koster. Hvert lag af infrastruktur undervejs tager sin
+                  bid.</span
+                >
+              </p>
+            </div>
+          </div>
+
+          <div class="step step--final" data-layer="el" data-target="16">
+            <div class="step-inner">
+              <span class="step-ore step-ore--green">16 øre</span>
+              <h3 class="step-title">
+                <span class="lang-en">Actual Electricity</span
+                ><span class="lang-da">Faktisk el</span>
+              </h3>
+              <p>
+                <span class="lang-en"
+                  >And then there's what's left. 16 øre. That's your actual
+                  electricity. The current that lights the lamp, runs the
+                  fridge, charges the phone.
+                  <strong
+                    >Everything you thought you were paying for.</strong
+                  ></span
+                ><span class="lang-da"
+                  >Og så er der det der er tilbage. 16 øre. Det er din faktiske
+                  el. Den strøm der tænder lampen, kører køleskabet, lader
+                  telefonen.
+                  <strong>Alt det du troede du betalte for.</strong></span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="journey-conclusion">
+        <div class="container narrow">
+          <div class="conclusion-bar-wrap scroll-reveal">
+            <div class="conclusion-bar">
+              <div class="cb-fees">
+                <span
+                  ><span class="lang-en">Tariffs, taxes &amp; fees</span
+                  ><span class="lang-da"
+                    >Tariffer, afgifter &amp; gebyrer</span
+                  ></span
+                >
+              </div>
+              <div class="cb-el">
+                <span
+                  ><span class="lang-en">Electricity</span
+                  ><span class="lang-da">El</span></span
+                >
+              </div>
+            </div>
+          </div>
+          <p class="conclusion-text scroll-reveal" style="--d: 0.15s">
+            <span class="lang-en"
+              >This isn't unusual. This is how the system is built.</span
+            ><span class="lang-da"
+              >Det her er ikke unormalt. Det er sådan systemet er bygget.</span
+            >
+          </p>
+          <p class="conclusion-body scroll-reveal" style="--d: 0.25s">
+            <span class="lang-en"
+              >Electricity is produced far away. It travels through expensive
+              infrastructure. It passes through regulated entities that each
+              take their share. It arrives at your meter with every layer's cost
+              baked in.</span
+            ><span class="lang-da"
+              >Elektricitet produceres langt væk. Den rejser gennem dyr
+              infrastruktur. Den passerer regulerede instanser der hver tager
+              deres andel. Den ankommer til din måler med hvert lags
+              omkostninger bagt ind.</span
+            >
+          </p>
+          <p class="conclusion-body scroll-reveal" style="--d: 0.35s">
+            <span class="lang-en"
+              >You receive. You pay. The money leaves your street and doesn't
+              come back.</span
+            ><span class="lang-da"
+              >Du modtager. Du betaler. Pengene forlader din gade og kommer ikke
+              tilbage.</span
+            >
+          </p>
+          <p class="conclusion-callout scroll-reveal" style="--d: 0.45s">
+            <span class="lang-en"
+              ><strong>Nobody designed this to cheat you.</strong> It just was
+              never designed for you.</span
+            ><span class="lang-da"
+              ><strong>Ingen designede det her for at snyde dig.</strong> Det
+              var bare aldrig designet til dig.</span
+            >
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- ACT 2.5: THE BRIDGE                         -->
+    <!-- ============================================ -->
+    <section id="bridge">
+      <div class="container narrow">
+        <p class="bridge-text scroll-reveal">
+          <span class="lang-en">But this is Denmark.</span
+          ><span class="lang-da">Men det her er Danmark.</span>
+        </p>
+        <p class="bridge-text-sub scroll-reveal" style="--d: 0.2s">
+          <span class="lang-en"
+            >And the Danes who came before you faced exactly this kind of
+            problem. They just solved it for milk, wind, and housing instead of
+            electricity.</span
+          ><span class="lang-da"
+            >Og danskerne der kom før dig stod med præcis den her slags problem.
+            De løste det bare for mælk, vind og boliger i stedet for el.</span
+          >
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- ACT 3: THE PATTERN                          -->
+    <!-- ============================================ -->
+    <section id="pattern">
+      <div class="container narrow">
+        <h2 class="section-heading text-dark scroll-reveal">
+          <span class="lang-en"
+            >Three times, Danes have solved this exact problem.</span
+          ><span class="lang-da"
+            >Tre gange har danskere løst det her problem.</span
+          >
+        </h2>
+
+        <div class="coop-story scroll-reveal" style="--d: 0.1s">
+          <div class="coop-marker">
+            <span class="coop-number">1</span>
+            <span class="coop-era"
+              ><span class="lang-en">1880s</span
+              ><span class="lang-da">1880'erne</span></span
+            >
+          </div>
+          <div class="coop-body">
+            <h3 class="coop-title">
+              <span class="lang-en">The Milk</span
+              ><span class="lang-da">Mælken</span>
+            </h3>
+            <p>
+              <span class="lang-en"
+                >In the 1880s, Danish farmers sold their milk to private
+                dairies. The dairies set the prices. The farmers had no say. The
+                milk was theirs, but the infrastructure belonged to someone
+                else.</span
+              ><span class="lang-da"
+                >I 1880'erne solgte danske bønder deres mælk til private
+                mejerier. Mejerierne satte priserne. Bønderne havde ingen
+                indflydelse. Mælken var deres, men infrastrukturen var en
+                andens.</span
+              >
+            </p>
+            <p>
+              <span class="lang-en"
+                >So they built their own.
+                <strong>Cooperative dairies.</strong> Owned by the farmers
+                themselves. Decisions made at general assemblies. Profits shared
+                according to how much milk you delivered, not how much money you
+                had.</span
+              ><span class="lang-da"
+                >Så de byggede deres egne. <strong>Andelsmejerier.</strong> Ejet
+                af bønderne selv. Beslutninger taget på generalforsamlinger.
+                Overskud delt efter hvor meget mælk du leverede, ikke hvor mange
+                penge du havde.</span
+              >
+            </p>
+            <p class="coop-mechanism">
+              <span class="lang-en"
+                >The mechanism:
+                <em
+                  >Why pay someone else to own what we all depend on?</em
+                ></span
+              ><span class="lang-da"
+                >Mekanismen:
+                <em
+                  >Hvorfor betale en anden for at eje det vi alle er afhængige
+                  af?</em
+                ></span
+              >
+            </p>
+          </div>
+        </div>
+
+        <div class="coop-story scroll-reveal" style="--d: 0.1s">
+          <div class="coop-marker">
+            <span class="coop-number">2</span>
+            <span class="coop-era"
+              ><span class="lang-en">1970s</span
+              ><span class="lang-da">1970'erne</span></span
+            >
+          </div>
+          <div class="coop-body">
+            <h3 class="coop-title">
+              <span class="lang-en">The Wind</span
+              ><span class="lang-da">Vinden</span>
+            </h3>
+            <p>
+              <span class="lang-en"
+                >In the 1970s and 80s, groups of Danes started putting up wind
+                turbines together. <strong>Wind cooperatives.</strong> You
+                invested with your neighbors, you shared the power, you owned
+                the turbine. Not a startup. Not a company. An association.</span
+              ><span class="lang-da"
+                >I 1970'erne og 80'erne begyndte grupper af danskere at opstille
+                vindmøller sammen. <strong>Vindmøllelaug.</strong> Du
+                investerede med dine naboer, du delte strømmen, du ejede møllen.
+                Ikke en startup. Ikke et firma. En forening.</span
+              >
+            </p>
+            <p>
+              <span class="lang-en"
+                >That model made Denmark the world leader in wind energy. Not a
+                top-down government strategy. Ordinary people pooling
+                resources.</span
+              ><span class="lang-da"
+                >Det var den model der gjorde Danmark til verdensleder inden for
+                vindenergi. Ikke en statslig strategi oppefra. Almindelige
+                mennesker der slog sig sammen.</span
+              >
+            </p>
+            <p class="coop-mechanism">
+              <span class="lang-en">The mechanism: <em>The same one.</em></span
+              ><span class="lang-da">Mekanismen: <em>Den samme.</em></span>
+            </p>
+          </div>
+        </div>
+
+        <div class="coop-story scroll-reveal" style="--d: 0.1s">
+          <div class="coop-marker">
+            <span class="coop-number">3</span>
+            <span class="coop-era"
+              ><span class="lang-en">Today</span
+              ><span class="lang-da">I dag</span></span
+            >
+          </div>
+          <div class="coop-body">
+            <h3 class="coop-title">
+              <span class="lang-en">Housing</span
+              ><span class="lang-da">Boligerne</span>
+            </h3>
+            <p>
+              <span class="lang-en"
+                >Half of Copenhagen lives in cooperative housing. You don't own
+                your apartment. The association owns the building. You own your
+                share of the association. General assemblies. Collective
+                decisions. Shared responsibility.</span
+              ><span class="lang-da"
+                >Halvdelen af København bor i andelsboliger. Du ejer ikke din
+                lejlighed. Foreningen ejer bygningen. Du ejer din andel af
+                foreningen. Generalforsamlinger. Kollektive beslutninger. Fælles
+                ansvar.</span
+              >
+            </p>
+            <p>
+              <span class="lang-en"
+                >It's not utopia. It's a Tuesday. Anyone who has sat through a
+                housing cooperative's general assembly at 9 PM on a weeknight
+                knows it's very much a Tuesday.</span
+              ><span class="lang-da"
+                >Det er ikke utopi. Det er hverdag. Enhver der har siddet til en
+                andelsboligforenings generalforsamling kl. 21 en tirsdag aften
+                ved det er hverdag.</span
+              >
+            </p>
+            <p class="coop-mechanism">
+              <span class="lang-en"
+                >The mechanism: <em>Still the same.</em></span
+              ><span class="lang-da"
+                >Mekanismen: <em>Stadig den samme.</em></span
+              >
+            </p>
+          </div>
+        </div>
+
+        <div class="fourth-time scroll-reveal">
+          <h3 class="fourth-title">
+            <span class="lang-en">The fourth time is waiting.</span
+            ><span class="lang-da">Den fjerde gang venter.</span>
+          </h3>
+          <p>
+            <span class="lang-en"
+              >Your electricity bill is the same kind of problem. Infrastructure
+              you depend on, owned by someone who isn't you. Money leaving your
+              street.</span
+            ><span class="lang-da"
+              >Din elregning er det samme slags problem. Infrastruktur du er
+              afhængig af, ejet af nogen der ikke er dig. Penge der forlader din
+              gade.</span
+            >
+          </p>
+          <p>
+            <span class="lang-en"
+              >It's called an <strong>Energy Community</strong>. A legally
+              recognized cooperative structure — defined under EU legislation,
+              supported by Danish regulation, backed by dedicated funding
+              programs.</span
+            ><span class="lang-da"
+              >Det hedder et <strong>Energifællesskab</strong>. En juridisk
+              anerkendt kooperativ struktur — defineret under EU-lovgivning,
+              støttet af dansk regulering, bakket op af dedikerede
+              finansieringsprogrammer.</span
+            >
+          </p>
+          <p class="fourth-key">
+            <span class="lang-en"
+              >And the question it answers is not "which provider is
+              cheapest?"<br /><strong
+                >It is: "Why do you need a provider at all?"</strong
+              ></span
+            ><span class="lang-da"
+              >Og spørgsmålet det besvarer er ikke "hvilken udbyder er
+              billigst?"<br /><strong
+                >Det er: "Hvorfor har du brug for en udbyder
+                overhovedet?"</strong
+              ></span
+            >
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- ACT 3.5: THE MIRROR — SCORE                 -->
+    <!-- ============================================ -->
+    <section id="mirror">
+      <div class="container narrow">
+        <div class="mirror-intro scroll-reveal">
+          <p class="mirror-bridge">
+            <span class="lang-en"
+              >You followed the krone. You saw the pattern.</span
+            ><span class="lang-da"
+              >Du har fulgt kronen. Du har set mønsteret.</span
+            >
+          </p>
+          <h2 class="mirror-question">
+            <span class="lang-en">What is your number?</span
+            ><span class="lang-da">Hvad er dit tal?</span>
+          </h2>
+        </div>
+
+        <div class="mirror-form-wrap scroll-reveal" style="--d: 0.15s">
+          <form id="score-form" class="mirror-form" autocomplete="off">
+            <div class="mirror-fields">
+              <div class="field">
+                <label for="postcode"
+                  ><span class="lang-en">Postcode</span
+                  ><span class="lang-da">Postnummer</span></label
+                >
+                <input
+                  type="text"
+                  id="postcode"
+                  name="postcode"
+                  placeholder="e.g. 8000"
+                  data-placeholder-en="e.g. 8000"
+                  data-placeholder-da="f.eks. 8000"
+                  maxlength="4"
+                  inputmode="numeric"
+                  pattern="[0-9]{4}"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label for="monthly-amount"
+                  ><span class="lang-en">DKK / month</span
+                  ><span class="lang-da">Kr / måned</span></label
+                >
+                <input
+                  type="text"
+                  id="monthly-amount"
+                  name="amount"
+                  placeholder="e.g. 2500"
+                  data-placeholder-en="e.g. 2500"
+                  data-placeholder-da="f.eks. 2500"
+                  inputmode="numeric"
+                  required
+                />
+              </div>
+            </div>
+            <button type="submit" class="btn-score">
+              <span class="lang-en">Show me my number</span
+              ><span class="lang-da">Vis mit tal</span>
+            </button>
+          </form>
+          <p class="mirror-promise">
+            <span class="lang-en"
+              >Your number tells you where you stand. Not what to do.</span
+            ><span class="lang-da"
+              >Dit tal fortæller dig hvor du står. Ikke hvad du skal gøre.</span
+            >
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- THRESHOLD OVERLAY                           -->
+    <!-- ============================================ -->
+    <div id="threshold-overlay" class="overlay hidden" aria-hidden="true">
+      <div class="threshold-content">
+        <p class="threshold-phase" id="phase-1">
+          <span class="lang-en">We're crunching your number.</span
+          ><span class="lang-da">Vi beregner dit tal.</span>
+        </p>
+        <p class="threshold-phase hidden" id="phase-2">
+          <span class="lang-en"
+            >You'll never look at your bill the same way.</span
+          ><span class="lang-da"
+            >Du kommer til at se din regning anderledes bagefter.</span
+          >
+        </p>
+        <p class="threshold-phase hidden" id="phase-3">
+          <span class="lang-en">Ready?</span><span class="lang-da">Klar?</span>
+        </p>
+        <div class="threshold-bar">
+          <div class="threshold-fill" id="threshold-fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- SCORE REVEAL                                -->
+    <!-- ============================================ -->
+    <section id="score-reveal" class="hidden">
+      <div class="container narrow">
+        <div class="score-mirror-card" id="score-card">
+          <div class="smc-badge">
+            <span class="lang-en">YOUR NUMBER</span
+            ><span class="lang-da">DIT TAL</span>
+          </div>
+          <div class="smc-number-wrap">
+            <span class="smc-number" id="smc-number">0.0</span>
+            <span class="smc-of">/ 10</span>
+          </div>
+          <div class="smc-tier">
+            <h2 class="smc-tier-label" id="smc-tier-label"></h2>
+            <p class="smc-tier-sub" id="smc-tier-sub"></p>
+          </div>
+          <div class="smc-breakdown">
+            <div class="smc-bar">
+              <div class="smc-bar-fees" id="smc-bar-fees"></div>
+              <div class="smc-bar-el" id="smc-bar-el"></div>
+            </div>
+            <div class="smc-breakdown-text">
+              <p>
+                <span class="lang-en">Of your</span
+                ><span class="lang-da">Af dine</span>
+                <strong id="smc-total"></strong>
+                <span class="lang-en">per month</span
+                ><span class="lang-da">om måneden</span>
+              </p>
+              <p>
+                <span class="lang-en">roughly</span
+                ><span class="lang-da">er ca.</span>
+                <strong id="smc-el-amount" class="text-green"></strong>
+                <span class="lang-en">is actual electricity.</span
+                ><span class="lang-da">faktisk el.</span>
+              </p>
+            </div>
+          </div>
+          <div class="smc-collective">
+            <p class="smc-collective-lead">
+              <span class="lang-en">But here's what matters:</span
+              ><span class="lang-da">Men her er det vigtige:</span>
+            </p>
+            <p>
+              <span class="lang-en"
+                >Your number isn't unique. Everyone on your street has roughly
+                the same one. Your neighbors. The family across the road. The
+                apartments on the corner.</span
+              ><span class="lang-da"
+                >Dit tal er ikke unikt. Alle på din gade har omtrent det samme
+                tal. Jeres naboer. Familien overfor. Lejlighederne på
+                hjørnet.</span
+              >
+            </p>
+            <p>
+              <span class="lang-en"
+                ><strong
+                  >You just don't know it about each other yet.</strong
+                ></span
+              ><span class="lang-da"
+                ><strong>I ved det bare ikke om hinanden endnu.</strong></span
+              >
+            </p>
+          </div>
+        </div>
+
+        <div class="post-score-nudge">
+          <a href="#vision" class="nudge-link"
+            ><span class="lang-en">See what your street could look like</span
+            ><span class="lang-da">Se hvad din gade kunne se ud</span>
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <polyline points="6 9 12 15 18 9" /></svg
+          ></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- ACT 4: THE VISION — YOUR STREET             -->
+    <!-- ============================================ -->
+    <section id="vision">
+      <div class="container narrow">
+        <h2 class="section-heading text-dark scroll-reveal">
+          <span class="lang-en">Your street. But different.</span
+          ><span class="lang-da">Din gade. Men anderledes.</span>
+        </h2>
+        <p class="section-lead text-dark scroll-reveal" style="--d: 0.1s">
+          <span class="lang-en">Picture this.</span
+          ><span class="lang-da">Forestil dig det her.</span>
+        </p>
+      </div>
+
+      <div class="street-scene-wrap">
+        <div class="container">
+          <div class="street-scene" id="street-scene">
+            <div class="street-ground"></div>
+
+            <div class="building b-house b1" data-reveal="1"></div>
+            <div class="building b-house b2" data-reveal="1"></div>
+            <div class="building b-apt b3" data-reveal="1"></div>
+            <div class="building b-school b4" data-reveal="2">
+              <div class="solar-panels">
+                <div class="panel"></div>
+                <div class="panel"></div>
+                <div class="panel"></div>
+              </div>
+            </div>
+            <div class="building b-community b5" data-reveal="3">
+              <div class="battery-icon">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="1" y="6" width="22" height="12" rx="2" />
+                  <line x1="6" y1="10" x2="6" y2="14" />
+                  <line x1="18" y1="10" x2="18" y2="14" />
+                </svg>
+              </div>
+            </div>
+            <div class="building b-house b6" data-reveal="1"></div>
+            <div class="building b-house b7" data-reveal="1"></div>
+
+            <div class="connection-lines hidden" id="connection-lines">
+              <svg
+                class="conn-svg"
+                viewBox="0 0 800 200"
+                preserveAspectRatio="none"
+              >
+                <path class="conn-line" d="M100,140 Q200,60 400,80" />
+                <path class="conn-line" d="M200,150 Q300,70 400,80" />
+                <path class="conn-line" d="M300,120 Q350,70 400,80" />
+                <path class="conn-line" d="M500,100 Q450,60 400,80" />
+                <path class="conn-line" d="M600,150 Q500,70 400,80" />
+                <path class="conn-line" d="M700,140 Q600,60 500,100" />
+              </svg>
+            </div>
+
+            <div class="money-loop hidden" id="money-loop">
+              <div class="loop-coin c1">kr</div>
+              <div class="loop-coin c2">kr</div>
+              <div class="loop-coin c3">kr</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="street-narrative">
+        <div class="container narrow">
+          <div class="street-step scroll-reveal" data-activate="1">
+            <div class="ss-icon">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+              </svg>
+            </div>
+            <div>
+              <h4>
+                <span class="lang-en">23 households</span
+                ><span class="lang-da">23 husstande</span>
+              </h4>
+              <p>
+                <span class="lang-en"
+                  >Your electricity bill shows generation from 23 households.
+                  Yours included. Renters included. The apartments on the
+                  corner. Everyone on the street.</span
+                ><span class="lang-da"
+                  >Din elregning viser produktion fra 23 husstande. Inklusiv
+                  din. Inklusiv lejere. Inklusiv lejlighederne. Alle på
+                  gaden.</span
+                >
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="street-step scroll-reveal"
+            data-activate="2"
+            style="--d: 0.1s"
+          >
+            <div class="ss-icon">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <circle cx="12" cy="12" r="5" />
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+              </svg>
+            </div>
+            <div>
+              <h4>
+                <span class="lang-en">The school roof</span
+                ><span class="lang-da">Skolens tag</span>
+              </h4>
+              <p>
+                <span class="lang-en"
+                  >Solar panels on the school roof at the end of your road.
+                  Powered by the street. Generating electricity for 12
+                  households.</span
+                ><span class="lang-da"
+                  >Solceller på taget af skolen for enden af din vej. Drevet af
+                  gaden. Producerer el til 12 husstande.</span
+                >
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="street-step scroll-reveal"
+            data-activate="3"
+            style="--d: 0.2s"
+          >
+            <div class="ss-icon">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <rect x="1" y="6" width="22" height="12" rx="2" ry="2" />
+                <line x1="6" y1="10" x2="6" y2="14" />
+                <line x1="18" y1="10" x2="18" y2="14" />
+              </svg>
+            </div>
+            <div>
+              <h4>
+                <span class="lang-en">The community center</span
+                ><span class="lang-da">Medborgerhuset</span>
+              </h4>
+              <p>
+                <span class="lang-en"
+                  >A shared battery in the community center. Stores surplus
+                  electricity for evening and night. Nobody loses power when the
+                  sun goes down.</span
+                ><span class="lang-da"
+                  >Et fælles batteri i medborgerhuset. Gemmer overskydende el
+                  til aften og nat. Ingen mister strøm når solen går ned.</span
+                >
+              </p>
+            </div>
+          </div>
+
+          <div
+            class="street-step scroll-reveal"
+            data-activate="4"
+            style="--d: 0.3s"
+          >
+            <div class="ss-icon">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+              </svg>
+            </div>
+            <div>
+              <h4>
+                <span class="lang-en">The money stays</span
+                ><span class="lang-da">Pengene bliver</span>
+              </h4>
+              <p>
+                <span class="lang-en"
+                  >The money that used to flow through six layers and vanish
+                  from your street? It circulates between neighbors now. You
+                  don't have a provider. You have a cooperative.</span
+                ><span class="lang-da"
+                  >De penge der plejede at strømme gennem seks instanser og
+                  forsvinde fra din gade? De cirkulerer nu mellem naboer. Du har
+                  ikke en udbyder. Du har et andelsselskab.</span
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="money-comparison">
+        <div class="container narrow">
+          <h3 class="mc-heading scroll-reveal">
+            <span class="lang-en"
+              >Follow your krone again — this time in an Energy Community.</span
+            ><span class="lang-da"
+              >Følg din krone igen — denne gang i et energifællesskab.</span
+            >
+          </h3>
+          <div class="mc-cols scroll-reveal" style="--d: 0.15s">
+            <div class="mc-col mc-now">
+              <span class="mc-label"
+                ><span class="lang-en">Now</span
+                ><span class="lang-da">Nu</span></span
+              >
+              <div class="mc-bar">
+                <div class="mc-seg mc-seg-fees" style="width: 84%">
+                  <span
+                    ><span class="lang-en">84 øre leaves</span
+                    ><span class="lang-da">84 øre forlader</span></span
+                  >
+                </div>
+                <div class="mc-seg mc-seg-el" style="width: 16%">
+                  <span
+                    ><span class="lang-en">16 øre elec.</span
+                    ><span class="lang-da">16 øre el</span></span
+                  >
+                </div>
+              </div>
+              <p class="mc-note">
+                <span class="lang-en"
+                  >84 øre leaves your street. Doesn't come back.</span
+                ><span class="lang-da"
+                  >84 øre forlader din gade. Kommer ikke tilbage.</span
+                >
+              </p>
+            </div>
+            <div class="mc-col mc-community">
+              <span class="mc-label"
+                ><span class="lang-en">In an Energy Community</span
+                ><span class="lang-da">I et energifællesskab</span></span
+              >
+              <div class="mc-bar">
+                <div class="mc-seg mc-seg-shared" style="width: 44%">
+                  <span
+                    ><span class="lang-en">44 øre shared</span
+                    ><span class="lang-da">44 øre fælles</span></span
+                  >
+                </div>
+                <div class="mc-seg mc-seg-remaining" style="width: 40%">
+                  <span
+                    ><span class="lang-en">40 øre fees</span
+                    ><span class="lang-da">40 øre gebyrer</span></span
+                  >
+                </div>
+                <div class="mc-seg mc-seg-el" style="width: 16%">
+                  <span
+                    ><span class="lang-en">16 øre elec.</span
+                    ><span class="lang-da">16 øre el</span></span
+                  >
+                </div>
+              </div>
+              <p class="mc-note">
+                <span class="lang-en"
+                  >44 øre circulates in the neighborhood. 40 øre in unavoidable
+                  fees. 16 øre electricity.</span
+                ><span class="lang-da"
+                  >44 øre cirkulerer i nabolaget. 40 øre i uundgåelige gebyrer.
+                  16 øre el.</span
+                >
+              </p>
+            </div>
+          </div>
+          <p class="mc-punchline scroll-reveal" style="--d: 0.3s">
+            <span class="lang-en"
+              ><strong
+                >The money doesn't disappear. It just stays with people you
+                actually know.</strong
+              ></span
+            ><span class="lang-da"
+              ><strong
+                >Pengene forsvinder ikke. De bliver bare hos folk du faktisk
+                kender.</strong
+              ></span
+            >
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- ACT 4.5: THE HONEST PART                    -->
+    <!-- ============================================ -->
+    <section id="honest">
+      <div class="container narrow">
+        <h2 class="section-heading scroll-reveal">
+          <span class="lang-en">What it actually takes.</span
+          ><span class="lang-da">Hvad det faktisk kræver.</span>
+        </h2>
+        <p class="honest-intro scroll-reveal" style="--d: 0.1s">
+          <span class="lang-en"
+            >We could stop here and let it sound easy. It just wouldn't be true.
+            So here's the honest version.</span
+          ><span class="lang-da"
+            >Vi kunne stoppe her og lade det lyde nemt. Det ville bare ikke være
+            sandt. Så her er den ærlige version.</span
+          >
+        </p>
+
+        <div class="honest-block scroll-reveal" style="--d: 0.15s">
+          <h4>
+            <span class="lang-en">About time</span
+            ><span class="lang-da">Om tid</span>
+          </h4>
+          <p>
+            <span class="lang-en"
+              >Setting up a cooperative takes work. General meetings, collective
+              decisions, paperwork. This is not a one-click solution. Most
+              communities take 6 to 12 months to get established. What we can do
+              is handle the technical and regulatory complexity. The part only
+              you can do is talk to your neighbors.</span
+            ><span class="lang-da"
+              >At danne et andelsselskab kræver arbejde. Generalforsamlinger,
+              kollektive beslutninger, papirarbejde. Det er ikke en
+              et-klik-løsning. De fleste fællesskaber er 6–12 måneder om at
+              blive sat op. Det vi kan gøre er at håndtere den tekniske og
+              reguleringsmæssige kompleksitet. Den del kun I kan gøre er at tale
+              med jeres naboer.</span
+            >
+          </p>
+        </div>
+
+        <div class="honest-block scroll-reveal" style="--d: 0.2s">
+          <h4>
+            <span class="lang-en">About money</span
+            ><span class="lang-da">Om penge</span>
+          </h4>
+          <p>
+            <span class="lang-en"
+              >An Energy Community has real startup costs — equipment, legal
+              structure, grid connection. The EU and the Danish state have
+              earmarked funding specifically for citizen energy initiatives. The
+              programs are designed to cover the majority, but "typically
+              covered" is not "always covered." We show you exactly which
+              programs your postcode qualifies for, and what the realistic costs
+              look like.</span
+            ><span class="lang-da"
+              >Et Energifællesskab har reelle startomkostninger — udstyr,
+              juridisk struktur, nettilslutning. EU og den danske stat har
+              øremærket midler specifikt til borger-energiinitiativer. De er
+              designet til at dække størstedelen, men "typisk dækket" er ikke
+              "altid dækket." Vi viser dig præcis hvilke programmer dit
+              postnummer kvalificerer til, og hvad de realistiske udgifter ser
+              ud.</span
+            >
+          </p>
+        </div>
+
+        <div class="honest-block scroll-reveal" style="--d: 0.25s">
+          <h4>
+            <span class="lang-en">About renters</span
+            ><span class="lang-da">Om lejere</span>
+          </h4>
+          <p>
+            <span class="lang-en"
+              >Energy Communities are built on the cooperative principle:
+              everyone who participates, benefits. You don't need to own a roof.
+              The regulatory details for renter participation in Denmark are
+              still being finalized — but the EU framework is explicitly
+              designed to include you.</span
+            ><span class="lang-da"
+              >Energifællesskaber er bygget på andelsprincippet: alle der
+              deltager, har gavn af det. Du behøver ikke eje et tag. De
+              reguleringsmæssige detaljer for lejerdeltagelse i Danmark er
+              stadig under udarbejdelse — men EU-rammen er eksplicit designet
+              til at inkludere dig.</span
+            >
+          </p>
+        </div>
+
+        <div class="honest-block scroll-reveal" style="--d: 0.3s">
+          <h4>
+            <span class="lang-en">About skepticism</span
+            ><span class="lang-da">Om skepsis</span>
+          </h4>
+          <p>
+            <span class="lang-en"
+              >It's not magic. It's infrastructure plus cooperative law plus
+              collective action. The math works because you remove structural
+              layers, not because someone subsidizes you. Denmark has done this
+              with dairies, housing, and energy for 150 years. The only new part
+              is applying it to your electricity bill.</span
+            ><span class="lang-da"
+              >Det er ikke magi. Det er infrastruktur plus andelslovgivning plus
+              kollektiv handling. Matematikken holder fordi I fjerner
+              strukturelle lag, ikke fordi nogen subsidierer jer. Danmark har
+              gjort det her med mejerier, boliger og energi i 150 år. Den eneste
+              nye del er at anvende det på din elregning.</span
+            >
+          </p>
+          <p>
+            <span class="lang-en"
+              >Why haven't more people done it? Most don't know it's an option.
+              Not because it doesn't work.</span
+            ><span class="lang-da"
+              >Grunden til at flere ikke har gjort det endnu? De fleste ved ikke
+              det er en mulighed. Ikke fordi det ikke virker.</span
+            >
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- INTERLUDE: WHO IS BEHIND THIS               -->
+    <!-- ============================================ -->
+    <section id="about">
+      <div class="container narrow">
+        <h2 class="section-heading text-dark scroll-reveal">
+          <span class="lang-en">Who's telling this story</span
+          ><span class="lang-da">Hvem fortæller den her historie</span>
+        </h2>
+        <div class="about-card scroll-reveal" style="--d: 0.1s">
+          <div class="about-header">
+            <div class="about-mark">O</div>
+            <div>
+              <h3>Orklys</h3>
+              <p class="about-desc">
+                <span class="lang-en"
+                  >[PLACEHOLDER: One-sentence description — e.g. "We help
+                  neighborhoods form Energy Communities."]</span
+                ><span class="lang-da"
+                  >[PLACEHOLDER: Ét-sætnings beskrivelse — f.eks. "Vi hjælper
+                  nabolag med at danne Energifællesskaber."]</span
+                >
+              </p>
+            </div>
+          </div>
+          <div class="about-row">
+            <div class="about-item">
+              <h4>
+                <span class="lang-en">Business model</span
+                ><span class="lang-da">Forretningsmodel</span>
+              </h4>
+              <p>
+                <span class="lang-en"
+                  >[PLACEHOLDER: Be explicit. Danish readers assume commercial
+                  interest. Stating it openly builds more trust than hiding
+                  it.]</span
+                ><span class="lang-da"
+                  >[PLACEHOLDER: Vær eksplicit. Danske læsere antager kommerciel
+                  interesse. At sige det åbent bygger mere tillid end at skjule
+                  det.]</span
+                >
+              </p>
+            </div>
+            <div class="about-item">
+              <h4>
+                <span class="lang-en">Who we are</span
+                ><span class="lang-da">Hvem er vi</span>
+              </h4>
+              <p>
+                <span class="lang-en"
+                  >[PLACEHOLDER: Names, backgrounds, why we're doing this. A
+                  Danish reader trusts people, not brands.]</span
+                ><span class="lang-da"
+                  >[PLACEHOLDER: Navne, baggrunde, hvorfor vi gør det her. En
+                  dansk læser stoler på mennesker, ikke brands.]</span
+                >
+              </p>
+            </div>
+          </div>
+          <div class="about-team">
+            <div class="team-member">
+              <div class="team-avatar">[?]</div>
+              <span>[Name]</span>
+            </div>
+            <div class="team-member">
+              <div class="team-avatar">[?]</div>
+              <span>[Name]</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- ACT 5: THE INVITATION                       -->
+    <!-- ============================================ -->
+    <section id="invitation">
+      <div class="container narrow invitation-content">
+        <div class="scroll-reveal">
+          <p class="inv-overline">
+            <span class="lang-en">The cooperative model is 150 years old.</span
+            ><span class="lang-da">Andelsmodellen er 150 år gammel.</span>
+          </p>
+          <h2 class="inv-heading">
+            <span class="lang-en"
+              >Your electricity bill is the newest thing you can apply it
+              to.</span
+            ><span class="lang-da"
+              >Din elregning er det nyeste du kan anvende den på.</span
+            >
+          </h2>
+        </div>
+
+        <div class="inv-body scroll-reveal" style="--d: 0.15s">
+          <p>
+            <span class="lang-en"
+              >Cooperative dairies built Danish agriculture. Wind turbine guilds
+              built Danish wind energy. Housing cooperatives built half of
+              Copenhagen's homes.</span
+            ><span class="lang-da"
+              >Andelsmejerier byggede dansk landbrug. Vindmøllelaug byggede
+              dansk vindenergi. Andelsboligforeninger byggede halvdelen af
+              Københavns boliger.</span
+            >
+          </p>
+          <p>
+            <span class="lang-en"
+              >Every time, it started the same way. Not with a law. Not with a
+              plan. <strong>With a conversation.</strong> Someone said to their
+              neighbor:
+              <em
+                >this doesn't make sense. Should we do something about it?</em
+              ></span
+            ><span class="lang-da"
+              >Hver gang startede det på samme måde. Ikke med en lov. Ikke med
+              en plan. <strong>Med en samtale.</strong> Nogen sagde til sin
+              nabo:
+              <em
+                >det her giver ikke mening. Skal vi gøre noget ved det?</em
+              ></span
+            >
+          </p>
+        </div>
+
+        <div class="inv-nudge scroll-reveal" style="--d: 0.25s">
+          <p>
+            <span class="lang-en"
+              >Your street has the same number. You pay the same tariffs. You're
+              tied to the same infrastructure.</span
+            ><span class="lang-da"
+              >Din gade har det samme tal. I betaler de samme tariffer. I er
+              bundet til den samme infrastruktur.</span
+            >
+          </p>
+          <p>
+            <span class="lang-en"
+              >The only difference between you and an Energy Community is that
+              you haven't talked about it yet.</span
+            ><span class="lang-da"
+              >Den eneste forskel mellem jer og et Energifællesskab er at I ikke
+              har talt om det endnu.</span
+            >
+          </p>
+        </div>
+
+        <div class="inv-cta-block scroll-reveal" style="--d: 0.35s">
+          <h3 class="inv-cta-heading">
+            <span class="lang-en">See what your street actually pays for.</span
+            ><span class="lang-da">Se hvad din gade faktisk betaler for.</span>
+          </h3>
+          <form id="score-form-bottom" class="mirror-form" autocomplete="off">
+            <div class="mirror-fields">
+              <div class="field">
+                <label for="postcode-btm"
+                  ><span class="lang-en">Postcode</span
+                  ><span class="lang-da">Postnummer</span></label
+                >
+                <input
+                  type="text"
+                  id="postcode-btm"
+                  name="postcode"
+                  placeholder="e.g. 8000"
+                  data-placeholder-en="e.g. 8000"
+                  data-placeholder-da="f.eks. 8000"
+                  maxlength="4"
+                  inputmode="numeric"
+                  pattern="[0-9]{4}"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label for="amount-btm"
+                  ><span class="lang-en">DKK / month</span
+                  ><span class="lang-da">Kr / måned</span></label
+                >
+                <input
+                  type="text"
+                  id="amount-btm"
+                  name="amount"
+                  placeholder="e.g. 2500"
+                  data-placeholder-en="e.g. 2500"
+                  data-placeholder-da="f.eks. 2500"
+                  inputmode="numeric"
+                  required
+                />
+              </div>
+            </div>
+            <button type="submit" class="btn-score">
+              <span class="lang-en">See my number — and my street's</span
+              ><span class="lang-da">Se mit tal — og min gades</span>
+            </button>
+          </form>
+          <a href="#" class="inv-secondary"
+            ><span class="lang-en">What does our neighborhood qualify for?</span
+            ><span class="lang-da"
+              >Hvad kvalificerer vores nabolag til?</span
+            ></a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- REFERRED FRIEND (hidden by default)         -->
+    <!-- ============================================ -->
+    <section id="referred" class="hidden">
+      <div class="container narrow referred-content">
+        <div class="ref-badge">
+          <span class="lang-en">FOLLOW YOUR KRONE</span
+          ><span class="lang-da">FØLG DIN KRONE</span>
+        </div>
+        <div class="ref-hook">
+          <p>
+            <span class="lang-en">Your neighbor followed their krone.</span
+            ><span class="lang-da">Din nabo fulgte sin krone.</span>
+          </p>
+          <p>
+            <span class="lang-en"
+              >They found out that <strong>16 øre</strong> of every krone is
+              actual electricity.<br />Their number is
+              <strong id="ref-score">7.8</strong> / 10.</span
+            ><span class="lang-da"
+              >De fandt ud af at <strong>16 øre</strong> af hver krone er
+              faktisk el.<br />Deres tal er
+              <strong id="ref-score-da">7.8</strong> / 10.</span
+            >
+          </p>
+        </div>
+        <h1 class="ref-h1">
+          <span class="lang-en">What's yours?</span
+          ><span class="lang-da">Hvad er dit?</span>
+        </h1>
+        <form id="score-form-ref" class="mirror-form" autocomplete="off">
+          <div class="mirror-fields">
+            <div class="field">
+              <label for="postcode-ref"
+                ><span class="lang-en">Postcode</span
+                ><span class="lang-da">Postnummer</span></label
+              >
+              <input
+                type="text"
+                id="postcode-ref"
+                name="postcode"
+                placeholder="e.g. 8000"
+                data-placeholder-en="e.g. 8000"
+                data-placeholder-da="f.eks. 8000"
+                maxlength="4"
+                inputmode="numeric"
+                pattern="[0-9]{4}"
+                required
+              />
+            </div>
+            <div class="field">
+              <label for="amount-ref"
+                ><span class="lang-en">DKK / month</span
+                ><span class="lang-da">Kr / måned</span></label
+              >
+              <input
+                type="text"
+                id="amount-ref"
+                name="amount"
+                placeholder="e.g. 2500"
+                data-placeholder-en="e.g. 2500"
+                data-placeholder-da="f.eks. 2500"
+                inputmode="numeric"
+                required
+              />
+            </div>
+          </div>
+          <button type="submit" class="btn-score">
+            <span class="lang-en">Follow my krone</span
+            ><span class="lang-da">Følg min krone</span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- FOOTER                                      -->
+    <!-- ============================================ -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span class="footer-brand"
+          ><span class="lang-en"
+            >Follow Your Krone — a tool by <strong>Orklys</strong></span
+          ><span class="lang-da"
+            >Følg Din Krone — et værktøj af <strong>Orklys</strong></span
+          ></span
+        >
+        <span class="footer-links">
+          <a href="#"
+            ><span class="lang-en">About Orklys</span
+            ><span class="lang-da">Om Orklys</span></a
+          >
+          <a href="#"
+            ><span class="lang-en">Privacy Policy</span
+            ><span class="lang-da">Privatlivspolitik</span></a
+          >
+        </span>
+      </div>
+    </footer>
+
+    <!-- Share toast -->
+    <div class="share-toast hidden" id="share-toast">
+      <span class="lang-en">Link copied!</span
+      ><span class="lang-da">Link kopieret!</span>
+    </div>
+
+    <!-- Language toggle -->
+    <div class="lang-toggle" id="lang-toggle">
+      <button class="lang-btn lang-btn--active" data-lang="en">EN</button>
+      <button class="lang-btn" data-lang="da">DA</button>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- JAVASCRIPT                                  -->
+    <!-- ============================================ -->
+    <script>
+      // ===== STATE =====
+      let userScore = null;
+      let userPostcode = "";
+      let userAmount = 0;
+      let currentLayer = -1;
+
+      // ===== I18N =====
+      const I18N = {
+        layers: {
+          en: [
+            {
+              id: "nettarif",
+              name: "Grid Tariff",
+              ore: 28,
+              color: "var(--c-nettarif)",
+            },
+            {
+              id: "elafgift",
+              name: "Electricity Tax",
+              ore: 22,
+              color: "var(--c-elafgift)",
+            },
+            { id: "moms", name: "VAT", ore: 20, color: "var(--c-moms)" },
+            {
+              id: "system",
+              name: "System Tariff",
+              ore: 8,
+              color: "var(--c-system)",
+            },
+            {
+              id: "trans",
+              name: "Transmission Tariff",
+              ore: 6,
+              color: "var(--c-trans)",
+            },
+            {
+              id: "el",
+              name: "Actual Electricity",
+              ore: 16,
+              color: "var(--c-el)",
+            },
+          ],
+          da: [
+            {
+              id: "nettarif",
+              name: "Nettarif",
+              ore: 28,
+              color: "var(--c-nettarif)",
+            },
+            {
+              id: "elafgift",
+              name: "Elafgift",
+              ore: 22,
+              color: "var(--c-elafgift)",
+            },
+            { id: "moms", name: "Moms", ore: 20, color: "var(--c-moms)" },
+            {
+              id: "system",
+              name: "Systemtarif",
+              ore: 8,
+              color: "var(--c-system)",
+            },
+            {
+              id: "trans",
+              name: "Transmissionstarif",
+              ore: 6,
+              color: "var(--c-trans)",
+            },
+            { id: "el", name: "Faktisk el", ore: 16, color: "var(--c-el)" },
+          ],
+        },
+        tiers: {
+          en: [
+            {
+              min: 8,
+              label: "The System's Favorite Customer",
+              sub: "Paying full price for someone else's infrastructure",
+            },
+            {
+              min: 6,
+              label: "The Quiet Payer",
+              sub: "You noticed something was off. You just never checked.",
+            },
+            {
+              min: 4,
+              label: "Mildly Irritated",
+              sub: "Welcome to the club. It's enormous.",
+            },
+            {
+              min: 2,
+              label: "Getting By",
+              sub: "You've dodged some of it — but not all.",
+            },
+            {
+              min: 0,
+              label: "Almost Free",
+              sub: "Either you barely use power, or you've already figured this out.",
+            },
+          ],
+          da: [
+            {
+              min: 8,
+              label: "Systemets Bedste Kunde",
+              sub: "Systemets bedste kunde",
+            },
+            { min: 6, label: "Stille Betaler", sub: "Den stille betaler" },
+            { min: 4, label: "Mildt Irriteret", sub: "Mildt irriteret" },
+            { min: 2, label: "Nogenlunde", sub: "Nogenlunde" },
+            { min: 0, label: "Næsten Fri", sub: "Næsten fri" },
+          ],
+        },
+        share: {
+          en: {
+            text: "I followed a single krone from my electricity bill. 16 øre was actual power. Find your number →",
+            title: "Follow Your Krone",
+            btn: "Share with your street",
+            sub: "Think your neighbors know their number?",
+          },
+          da: {
+            text: "Jeg fulgte en krone fra min elregning. 16 øre var faktisk el. Se hvad dit tal er →",
+            title: "Følg Din Krone",
+            btn: "Del med din gade",
+            sub: "Tror du dine naboer kender deres tal?",
+          },
+        },
+      };
+
+      function getLang() {
+        return document.documentElement.dataset.lang || "en";
+      }
+
+      function getLayers() {
+        return I18N.layers[getLang()];
+      }
+
+      function getTiers() {
+        return I18N.tiers[getLang()];
+      }
+
+      function setLang(lang) {
+        document.documentElement.dataset.lang = lang;
+        document.documentElement.lang = lang;
+        localStorage.setItem("fyk-lang", lang);
+
+        // Update toggle buttons
+        document.querySelectorAll(".lang-btn").forEach((btn) => {
+          btn.classList.toggle("lang-btn--active", btn.dataset.lang === lang);
+        });
+
+        // Update placeholders
+        document.querySelectorAll("[data-placeholder-en]").forEach((el) => {
+          el.placeholder =
+            lang === "en" ? el.dataset.placeholderEn : el.dataset.placeholderDa;
+        });
+
+        // Update layer tag if visible
+        if (currentLayer >= 0) {
+          const layers = getLayers();
+          const layer = layers[currentLayer];
+          document.getElementById("tag-name").textContent = layer.name;
+          document.getElementById("tag-amount").textContent =
+            layer.ore + " øre";
+        }
+
+        // Update score card if visible
+        if (userScore !== null) {
+          const tier = getTier(userScore);
+          document.getElementById("smc-tier-label").textContent = tier.label;
+          document.getElementById("smc-tier-sub").textContent = tier.sub;
+          document.getElementById("smc-total").textContent =
+            userAmount.toLocaleString("da-DK") + " kr";
+
+          // Update share button if exists
+          const shareBtn = document.getElementById("share-btn");
+          if (shareBtn) {
+            const s = I18N.share[lang];
+            shareBtn.innerHTML = `
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                    ${s.btn}
+                `;
+            const shareSub = shareBtn.parentElement.querySelector(".share-sub");
+            if (shareSub) shareSub.textContent = s.sub;
+          }
+        }
+      }
+
+      // ===== INIT =====
+      document.addEventListener("DOMContentLoaded", () => {
+        // Restore saved language preference
+        const saved = localStorage.getItem("fyk-lang");
+        if (saved && (saved === "en" || saved === "da")) {
+          setLang(saved);
+        }
+
+        if (checkReferral()) return;
+        initGuess();
+        initScrollReveals();
+        initJourneyScroll();
+        initStreetScene();
+        initForms();
+        initSmoothScroll();
+        initLangToggle();
+      });
+
+      // ===== LANGUAGE TOGGLE =====
+      function initLangToggle() {
+        document.querySelectorAll(".lang-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            setLang(btn.dataset.lang);
+          });
+        });
+      }
+
+      // ===== REFERRAL =====
+      function checkReferral() {
+        const params = new URLSearchParams(window.location.search);
+        const ref = params.get("ref");
+        if (!ref) return false;
+        const score = parseFloat(ref);
+        if (isNaN(score) || score < 0 || score > 10) return false;
+
+        document.getElementById("hero").classList.add("hidden");
+        document
+          .querySelectorAll(
+            "#krone-journey,#bridge,#pattern,#mirror,#score-reveal,#vision,#honest,#about,#invitation"
+          )
+          .forEach((el) => el.classList.add("hidden"));
+        document.getElementById("ref-score").textContent = score.toFixed(1);
+        const refScoreDa = document.getElementById("ref-score-da");
+        if (refScoreDa) refScoreDa.textContent = score.toFixed(1);
+        document.getElementById("referred").classList.remove("hidden");
+        return true;
+      }
+
+      // ===== GUESS INTERACTION =====
+      function initGuess() {
+        const btns = document.querySelectorAll(".guess-btn");
+        const answer = document.getElementById("guess-answer");
+        btns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            btns.forEach((b) => b.classList.add("guess-picked"));
+            btn.classList.add("guess-selected");
+            answer.classList.remove("hidden");
+          });
+        });
+      }
+
+      // ===== SCROLL REVEALS =====
+      function initScrollReveals() {
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) e.target.classList.add("revealed");
+            });
+          },
+          { threshold: 0.15, rootMargin: "0px 0px -40px 0px" }
+        );
+        document
+          .querySelectorAll(".scroll-reveal")
+          .forEach((el) => obs.observe(el));
+      }
+
+      // ===== KRONE JOURNEY SCROLLYTELLING =====
+      function initJourneyScroll() {
+        const steps = document.querySelectorAll(".journey-steps .step");
+        const remainder = document.getElementById("krone-remainder");
+        const tagName = document.getElementById("tag-name");
+        const tagAmount = document.getElementById("tag-amount");
+
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting) return;
+              const step = entry.target;
+              const layerId = step.dataset.layer;
+              const layers = getLayers();
+              const layerIndex = layers.findIndex((l) => l.id === layerId);
+              if (layerIndex <= currentLayer) return;
+
+              currentLayer = layerIndex;
+
+              // Activate step styling
+              steps.forEach((s) => s.classList.remove("step-active"));
+              step.classList.add("step-active");
+
+              // Animate layer in the bar via flex-basis
+              const layer = layers[layerIndex];
+              const el = document.getElementById("kl-" + layerId);
+              el.style.flexBasis = layer.ore + "%";
+
+              // Hide remainder label when fully claimed
+              if (currentLayer >= layers.length - 1) {
+                remainder.style.opacity = "0";
+              }
+
+              // Update tag
+              tagName.textContent = layer.name;
+              tagAmount.textContent = layer.ore + " øre";
+              document.getElementById("layer-tag").style.opacity = "1";
+            });
+          },
+          { rootMargin: "-20% 0px -40% 0px" }
+        );
+
+        steps.forEach((s) => obs.observe(s));
+      }
+
+      // ===== STREET SCENE =====
+      function initStreetScene() {
+        const steps = document.querySelectorAll(".street-step");
+        const scene = document.getElementById("street-scene");
+        const connLines = document.getElementById("connection-lines");
+        const moneyLoop = document.getElementById("money-loop");
+        let maxPhase = 0;
+
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (!e.isIntersecting) return;
+              const phase = parseInt(e.target.dataset.activate);
+              if (phase <= maxPhase) return;
+              maxPhase = phase;
+
+              scene
+                .querySelectorAll(`[data-reveal="${phase}"]`)
+                .forEach((b) => {
+                  b.classList.add("building-lit");
+                });
+
+              if (phase >= 2) {
+                connLines.classList.remove("hidden");
+                connLines.classList.add("lines-active");
+              }
+              if (phase >= 4) {
+                moneyLoop.classList.remove("hidden");
+                moneyLoop.classList.add("loop-active");
+              }
+            });
+          },
+          { threshold: 0.15 }
+        );
+
+        steps.forEach((s) => obs.observe(s));
+      }
+
+      // ===== FORMS =====
+      function initForms() {
+        ["score-form", "score-form-bottom", "score-form-ref"].forEach((id) => {
+          const form = document.getElementById(id);
+          if (form) form.addEventListener("submit", handleSubmit);
+        });
+      }
+
+      function handleSubmit(e) {
+        e.preventDefault();
+        const form = e.target;
+        const pc = form.querySelector('[name="postcode"]');
+        const am = form.querySelector('[name="amount"]');
+        const postcode = pc.value.trim();
+        const amount = parseInt(am.value.replace(/\D/g, ""));
+
+        if (!/^\d{4}$/.test(postcode)) {
+          pc.classList.add("field-error");
+          setTimeout(() => pc.classList.remove("field-error"), 1200);
+          return;
+        }
+        if (!amount || amount < 100 || amount > 50000) {
+          am.classList.add("field-error");
+          setTimeout(() => am.classList.remove("field-error"), 1200);
+          return;
+        }
+
+        userPostcode = postcode;
+        userAmount = amount;
+        userScore = calcScore(amount, postcode);
+        showThreshold();
+      }
+
+      function calcScore(bill, postcode) {
+        const ratio = 0.2;
+        let base = (1 - ratio) * 10;
+        let billFactor = (Math.min(bill / 2500, 2.5) - 1) * 0.8;
+        let region = parseInt(postcode.substring(0, 2)) || 50;
+        let regionFactor = ((region % 7) - 3) * 0.12;
+        let score = base + billFactor + regionFactor;
+        return Math.round(Math.min(9.8, Math.max(2.5, score)) * 10) / 10;
+      }
+
+      function getTier(score) {
+        const tiers = getTiers();
+        return tiers.find((t) => score >= t.min) || tiers[tiers.length - 1];
+      }
+
+      // ===== THRESHOLD OVERLAY =====
+      function showThreshold() {
+        const overlay = document.getElementById("threshold-overlay");
+        const fill = document.getElementById("threshold-fill");
+        overlay.classList.remove("hidden");
+        document.body.style.overflow = "hidden";
+
+        fill.style.width = "0%";
+        requestAnimationFrame(() => {
+          fill.style.transition = "width 3.2s cubic-bezier(.16,1,.3,1)";
+          fill.style.width = "100%";
+        });
+
+        // Phase transitions
+        setTimeout(() => {
+          document.getElementById("phase-1").classList.add("phase-out");
+          document.getElementById("phase-2").classList.remove("hidden");
+        }, 1000);
+
+        setTimeout(() => {
+          document.getElementById("phase-2").classList.add("phase-out");
+          document.getElementById("phase-3").classList.remove("hidden");
+        }, 2200);
+
+        setTimeout(() => {
+          overlay.classList.add("overlay-fade");
+          setTimeout(() => {
+            overlay.classList.add("hidden");
+            overlay.classList.remove("overlay-fade");
+            document.body.style.overflow = "";
+            // Reset phases
+            document.getElementById("phase-1").classList.remove("phase-out");
+            document.getElementById("phase-2").classList.add("hidden");
+            document.getElementById("phase-2").classList.remove("phase-out");
+            document.getElementById("phase-3").classList.add("hidden");
+            fill.style.transition = "none";
+            fill.style.width = "0%";
+            revealScore();
+          }, 400);
+        }, 3200);
+      }
+
+      // ===== SCORE REVEAL =====
+      function revealScore() {
+        const section = document.getElementById("score-reveal");
+        const tier = getTier(userScore);
+        const elPct = 0.16 + Math.random() * 0.08;
+        const elAmount = Math.round(userAmount * elPct);
+
+        section.classList.remove("hidden");
+        document.getElementById("mirror").style.display = "none";
+
+        // Hide referral if open
+        const ref = document.getElementById("referred");
+        if (!ref.classList.contains("hidden")) ref.classList.add("hidden");
+
+        window.scrollTo({ top: section.offsetTop - 40, behavior: "smooth" });
+
+        // Populate
+        document.getElementById("smc-tier-label").textContent = tier.label;
+        document.getElementById("smc-tier-sub").textContent = tier.sub;
+        document.getElementById("smc-total").textContent =
+          userAmount.toLocaleString("da-DK") + " kr";
+        document.getElementById("smc-el-amount").textContent = elAmount + " kr";
+
+        // Animate score
+        animateCounter(document.getElementById("smc-number"), userScore, 2000);
+
+        // Animate bars
+        setTimeout(() => {
+          document.getElementById("smc-bar-fees").style.width =
+            100 - Math.round(elPct * 100) + "%";
+          document.getElementById("smc-bar-el").style.width =
+            Math.round(elPct * 100) + "%";
+        }, 600);
+
+        // Show remaining sections
+        setTimeout(() => {
+          document
+            .querySelectorAll("#vision,#honest,#about,#invitation,.site-footer")
+            .forEach((el) => {
+              el.classList.remove("hidden");
+              el.style.display = "";
+            });
+        }, 1500);
+
+        initShare(userScore, tier);
+      }
+
+      function animateCounter(el, target, duration) {
+        const start = performance.now();
+        function tick(now) {
+          const p = Math.min((now - start) / duration, 1);
+          const eased = 1 - Math.pow(1 - p, 3);
+          el.textContent = (target * eased).toFixed(1);
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+
+      // ===== SHARE =====
+      function initShare(score, tier) {
+        const card = document.getElementById("score-card");
+        const lang = getLang();
+        const s = I18N.share[lang];
+
+        // Add share button dynamically after the collective section
+        const collective = card.querySelector(".smc-collective");
+        if (!card.querySelector(".smc-share")) {
+          const shareWrap = document.createElement("div");
+          shareWrap.className = "smc-share";
+          shareWrap.innerHTML = `
+                <button class="btn-share" id="share-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                    ${s.btn}
+                </button>
+                <p class="share-sub">${s.sub}</p>
+            `;
+          collective.after(shareWrap);
+        }
+
+        document
+          .getElementById("share-btn")
+          .addEventListener("click", async () => {
+            const currentS = I18N.share[getLang()];
+            const text = currentS.text;
+            const url =
+              location.origin + location.pathname + "?ref=" + score.toFixed(1);
+
+            if (navigator.share) {
+              try {
+                await navigator.share({ title: currentS.title, text, url });
+              } catch {}
+            } else {
+              try {
+                await navigator.clipboard.writeText(text + " " + url);
+                showToast();
+              } catch {
+                const ta = document.createElement("textarea");
+                ta.value = text + " " + url;
+                document.body.appendChild(ta);
+                ta.select();
+                document.execCommand("copy");
+                document.body.removeChild(ta);
+                showToast();
+              }
+            }
+          });
+      }
+
+      function showToast() {
+        const t = document.getElementById("share-toast");
+        t.classList.remove("hidden");
+        setTimeout(() => t.classList.add("hidden"), 2500);
+      }
+
+      // ===== SMOOTH SCROLL =====
+      function initSmoothScroll() {
+        document.querySelectorAll('a[href^="#"]').forEach((link) => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const t = document.querySelector(link.getAttribute("href"));
+            if (t) t.scrollIntoView({ behavior: "smooth", block: "start" });
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

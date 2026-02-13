@@ -1,0 +1,1916 @@
+/* ================================================
+   FØLG DIN KRONE — Storytelling Landing Page
+
+   Typography: Bricolage Grotesque / Crimson Pro / JetBrains Mono
+   Palette: Warm paper + dramatic dark sections
+   Pattern: Editorial scrollytelling
+   ================================================ */
+
+/* ========================
+   1. CUSTOM PROPERTIES
+   ======================== */
+:root {
+  /* Backgrounds */
+  --bg-warm: #f0ebe1;
+  --bg-warm-alt: #e8e2d6;
+  --bg-dark: #0e0e14;
+  --bg-dark-mid: #16161f;
+  --bg-score: #f5f0e6;
+
+  /* Text */
+  --text-ink: #1a1814;
+  --text-body: #3a3830;
+  --text-muted: #7a756a;
+  --text-light: #e8e3d8;
+  --text-light-muted: #9a958c;
+
+  /* Krone layer colors */
+  --c-nettarif: #c94f48;
+  --c-elafgift: #d98a3b;
+  --c-moms: #8a8698;
+  --c-system: #7e62a8;
+  --c-trans: #4898a0;
+  --c-el: #5ab866;
+
+  /* UI */
+  --c-accent: #c94f48;
+  --c-accent-soft: rgba(201, 79, 72, 0.12);
+  --c-green-soft: rgba(90, 184, 102, 0.14);
+  --c-border: rgba(26, 24, 20, 0.08);
+  --c-border-light: rgba(232, 227, 216, 0.12);
+
+  /* Spacing */
+  --s-section: clamp(6rem, 12vh, 10rem);
+  --s-container: min(680px, 90vw);
+  --s-container-wide: min(960px, 92vw);
+
+  /* Radius */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ========================
+   2. RESET & BASE
+   ======================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: "Crimson Pro", Georgia, "Times New Roman", serif;
+  font-size: clamp(17px, 1.15vw, 20px);
+  line-height: 1.7;
+  color: var(--text-body);
+  background: var(--bg-warm);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--c-accent-soft);
+  color: var(--text-ink);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--c-accent);
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+a:hover {
+  opacity: 0.75;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ========================
+   3. TYPOGRAPHY
+   ======================== */
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  color: var(--text-ink);
+  line-height: 1.15;
+  letter-spacing: -0.015em;
+  font-weight: 800;
+}
+
+.section-heading {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  margin-bottom: 1rem;
+  text-wrap: balance;
+}
+.section-heading.text-dark {
+  color: var(--text-ink);
+}
+
+.section-lead {
+  font-size: clamp(1.1rem, 1.4vw, 1.35rem);
+  color: var(--text-light-muted);
+  max-width: 480px;
+  margin-inline: auto;
+  text-wrap: balance;
+}
+.section-lead.text-dark {
+  color: var(--text-muted);
+}
+
+strong {
+  font-weight: 600;
+}
+em {
+  font-style: italic;
+}
+
+.text-green {
+  color: var(--c-el);
+}
+
+/* Monospace for data */
+.smc-number,
+.step-ore,
+.score-data {
+  font-family: "JetBrains Mono", "Courier New", monospace;
+}
+
+/* ========================
+   4. LAYOUT
+   ======================== */
+.container {
+  width: var(--s-container-wide);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+.container.narrow {
+  width: var(--s-container);
+}
+
+/* ========================
+   5. GRAIN OVERLAY
+   ======================== */
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 200px;
+}
+
+/* ========================
+   6. ANIMATIONS BASE
+   ======================== */
+.anim-in {
+  opacity: 0;
+  transform: translateY(28px);
+  animation: fadeUp 0.9s var(--ease-out) forwards;
+  animation-delay: var(--d, 0s);
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+  transition-delay: var(--d, 0s);
+}
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ========================
+   7. HERO (Act 1)
+   ======================== */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+  background: var(--bg-warm);
+  overflow: hidden;
+}
+
+/* Krone coin — bobbing at the bottom */
+#hero::after {
+  content: "";
+  position: absolute;
+  width: clamp(125px, 18vw, 200px);
+  height: clamp(125px, 18vw, 200px);
+  background: url("assets/1-krone.png") center / contain no-repeat;
+  opacity: 0.18;
+  bottom: -10%;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: none;
+  z-index: 0;
+  animation: coinBob 2.4s ease-in-out infinite;
+}
+
+@keyframes coinBob {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(5px);
+  }
+}
+
+.hero-content {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-overline {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.hero-h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 1.8rem;
+}
+
+.hero-intro {
+  font-size: clamp(1.15rem, 1.6vw, 1.4rem);
+  color: var(--text-body);
+  max-width: 520px;
+  margin: 0 auto 1rem;
+}
+
+.hero-intro-sub {
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  color: var(--text-muted);
+  max-width: 500px;
+  margin: 0 auto 3rem;
+}
+
+/* Guess Block */
+.guess-block {
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.45);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  backdrop-filter: blur(8px);
+}
+
+.guess-question {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-ink);
+  margin-bottom: 1.2rem;
+}
+
+.guess-options {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.guess-btn {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.65rem 1.4rem;
+  border: 2px solid var(--c-border);
+  border-radius: var(--r-md);
+  background: white;
+  color: var(--text-ink);
+  cursor: pointer;
+  transition: all 0.25s var(--ease-out);
+}
+.guess-btn:hover {
+  border-color: var(--c-accent);
+  background: var(--c-accent-soft);
+}
+.guess-btn.guess-picked {
+  opacity: 0.35;
+  pointer-events: none;
+}
+.guess-btn.guess-selected {
+  opacity: 1;
+  border-color: var(--c-accent);
+  background: var(--c-accent);
+  color: white;
+}
+
+.guess-answer {
+  margin-top: 1.2rem;
+  animation: fadeUp 0.6s var(--ease-out);
+}
+.guess-reveal {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-ink);
+}
+.guess-follow {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-top: 0.4rem;
+}
+
+/* Scroll Nudge */
+.scroll-nudge {
+  margin-top: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
+.scroll-nudge svg {
+  animation: bob 2.4s ease-in-out infinite;
+}
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+/* ========================
+   8. KRONE JOURNEY (Act 2)
+   ======================== */
+#krone-journey {
+  background: var(--bg-dark);
+  color: var(--text-light);
+  position: relative;
+}
+
+.journey-intro {
+  padding: var(--s-section) 0 3rem;
+  text-align: center;
+}
+.journey-intro .section-heading {
+  color: var(--text-light);
+}
+
+/* Scrollytelling area */
+.journey-scroll-area {
+  position: relative;
+  padding-bottom: 2rem;
+}
+
+/* Sticky bar */
+.journey-figure {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 2rem 0 1.5rem;
+  background: linear-gradient(180deg, var(--bg-dark) 70%, transparent);
+}
+
+.krone-bar-outer {
+  width: var(--s-container);
+  max-width: 90vw;
+  margin: 0 auto;
+  display: flex;
+  height: 44px;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--c-border-light);
+}
+
+.krone-bar {
+  display: contents; /* layers become direct flex children of .krone-bar-outer */
+}
+
+.krone-layer {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 0%;
+  background: var(--clr);
+  transition: flex-basis 1s var(--ease-out);
+  position: relative;
+  overflow: hidden;
+}
+.krone-layer--el {
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+}
+
+.krone-remainder {
+  flex: 1 1 0%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: flex-basis 0.6s var(--ease-out), opacity 0.5s;
+  min-width: 0;
+}
+.remainder-label {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-light-muted);
+  white-space: nowrap;
+  opacity: 0.5;
+}
+
+.layer-tag {
+  width: var(--s-container);
+  max-width: 90vw;
+  margin: 0.8rem auto 0;
+  display: flex;
+  justify-content: space-between;
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.tag-name {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+.tag-amount {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+  color: var(--text-light-muted);
+}
+
+/* Steps */
+.journey-steps {
+  position: relative;
+  z-index: 1;
+}
+
+.step {
+  min-height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem;
+}
+
+.step-inner {
+  max-width: 520px;
+  text-align: center;
+  opacity: 0.2;
+  transform: translateY(12px);
+  transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+}
+.step-active .step-inner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.step-ore {
+  font-family: "JetBrains Mono", monospace;
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+[data-layer="nettarif"] .step-ore { color: var(--c-nettarif); }
+[data-layer="elafgift"] .step-ore { color: var(--c-elafgift); }
+[data-layer="moms"] .step-ore { color: var(--c-moms); }
+[data-layer="system"] .step-ore { color: var(--c-system); }
+[data-layer="trans"] .step-ore { color: var(--c-trans); }
+[data-layer="el"] .step-ore { color: var(--c-el); }
+
+.step-title {
+  font-size: clamp(1.1rem, 1.6vw, 1.3rem);
+  color: var(--text-light);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.step--final .step-inner {
+  padding-bottom: 2rem;
+}
+
+.step p:not(.step-ore):not(.step-title) {
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  color: var(--text-light-muted);
+  line-height: 1.75;
+}
+
+/* Conclusion */
+.journey-conclusion {
+  padding: var(--s-section) 0;
+  text-align: center;
+}
+
+.conclusion-bar-wrap {
+  max-width: 480px;
+  margin: 0 auto 2.5rem;
+}
+.conclusion-bar {
+  display: flex;
+  height: 36px;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.cb-fees {
+  width: 84%;
+  background: var(--c-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.cb-el {
+  width: 16%;
+  background: var(--c-el);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.conclusion-text {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  font-weight: 600;
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+  text-wrap: balance;
+}
+
+.conclusion-body {
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  color: var(--text-light-muted);
+  max-width: 540px;
+  margin: 0 auto 1rem;
+  line-height: 1.8;
+  text-wrap: balance;
+}
+
+.conclusion-callout {
+  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+  color: var(--text-light);
+  margin-top: 2rem;
+  text-wrap: balance;
+}
+
+/* ========================
+   9. BRIDGE (Act 2.5)
+   ======================== */
+#bridge {
+  position: relative;
+  padding: var(--s-section) 0;
+  background: var(--bg-warm);
+  text-align: center;
+  overflow: hidden;
+}
+
+#bridge::before {
+  content: "";
+  position: absolute;
+  width: clamp(200px, 28vw, 340px);
+  height: clamp(200px, 28vw, 340px);
+  background: url("assets/1-krone.png") center / contain no-repeat;
+  opacity: 0.035;
+  top: 50%;
+  right: -4%;
+  transform: translateY(-50%) rotate(12deg);
+  pointer-events: none;
+}
+
+.bridge-text {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--text-ink);
+  line-height: 1.2;
+  margin-bottom: 1.2rem;
+  text-wrap: balance;
+}
+
+.bridge-text-sub {
+  font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+  color: var(--text-muted);
+  max-width: 520px;
+  margin: 0 auto;
+  text-wrap: balance;
+}
+
+/* ========================
+   10. PATTERN (Act 3)
+   ======================== */
+#pattern {
+  padding: var(--s-section) 0;
+  background: var(--bg-warm);
+}
+
+.coop-story {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid var(--c-border);
+}
+.coop-story:last-of-type {
+  border-bottom: none;
+}
+
+.coop-marker {
+  flex-shrink: 0;
+  width: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+.coop-number {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-ink);
+  line-height: 1;
+}
+.coop-era {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.coop-body {
+  flex: 1;
+}
+
+.coop-title {
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  margin-bottom: 0.8rem;
+  color: var(--text-ink);
+}
+
+.coop-body p {
+  margin-bottom: 0.8rem;
+  color: var(--text-body);
+}
+
+.coop-mechanism {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-ink);
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--c-border);
+}
+.coop-mechanism em {
+  font-style: italic;
+  color: var(--c-accent);
+}
+
+/* Fourth time */
+.fourth-time {
+  margin-top: 3rem;
+  padding: 2.5rem;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+}
+.fourth-title {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  margin-bottom: 1rem;
+  text-wrap: balance;
+}
+.fourth-time p {
+  margin-bottom: 0.8rem;
+  color: var(--text-body);
+}
+.fourth-key {
+  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
+  margin-top: 1.5rem;
+  color: var(--text-ink);
+  text-wrap: balance;
+}
+
+/* ========================
+   11. MIRROR / SCORE (Act 3.5)
+   ======================== */
+#mirror {
+  padding: var(--s-section) 0;
+  background: var(--bg-score);
+  text-align: center;
+}
+
+.mirror-bridge {
+  font-size: clamp(1rem, 1.3vw, 1.2rem);
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+
+.mirror-question {
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 2.5rem;
+  text-wrap: balance;
+}
+
+.mirror-form-wrap {
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.mirror-form {
+  padding: 2rem;
+  background: white;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.04);
+}
+
+.mirror-fields {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.2rem;
+}
+.field {
+  flex: 1;
+  text-align: left;
+}
+.field label {
+  display: block;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+.field input {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1rem;
+  border: 1.5px solid var(--c-border);
+  border-radius: var(--r-sm);
+  background: var(--bg-warm);
+  color: var(--text-ink);
+  transition: border-color 0.2s;
+  outline: none;
+}
+.field input::placeholder {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+.field input:focus {
+  border-color: var(--c-accent);
+}
+.field-error {
+  border-color: var(--c-accent) !important;
+  animation: shake 0.4s var(--ease-out);
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  75% {
+    transform: translateX(5px);
+  }
+}
+
+.btn-score {
+  width: 100%;
+  padding: 0.85rem;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  background: var(--text-ink);
+  border: none;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: opacity 0.2s, transform 0.15s;
+}
+.btn-score:hover {
+  opacity: 0.88;
+}
+.btn-score:active {
+  transform: scale(0.985);
+}
+
+.mirror-promise {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-top: 1rem;
+}
+
+/* ========================
+   12. THRESHOLD OVERLAY
+   ======================== */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-dark);
+  transition: opacity 0.4s;
+}
+.overlay-fade {
+  opacity: 0;
+}
+
+.threshold-content {
+  text-align: center;
+  max-width: 440px;
+  padding: 2rem;
+}
+
+.threshold-phase {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  font-weight: 600;
+  color: var(--text-light);
+  transition: opacity 0.5s;
+  animation: fadeUp 0.5s var(--ease-out);
+}
+.phase-out {
+  opacity: 0;
+  position: absolute;
+}
+
+.threshold-bar {
+  margin-top: 2.5rem;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.threshold-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--c-el);
+  border-radius: 2px;
+}
+
+/* ========================
+   13. SCORE REVEAL
+   ======================== */
+#score-reveal {
+  padding: var(--s-section) 0 3rem;
+  background: var(--bg-score);
+}
+
+.score-mirror-card {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 3rem 2.5rem;
+  background: white;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.06);
+  text-align: center;
+  animation: fadeUp 0.8s var(--ease-out);
+}
+
+.smc-badge {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.smc-number-wrap {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+.smc-number {
+  font-size: clamp(3.5rem, 8vw, 5rem);
+  font-weight: 600;
+  color: var(--text-ink);
+  line-height: 1;
+}
+.smc-of {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+}
+
+.smc-tier {
+  margin-bottom: 2rem;
+}
+.smc-tier-label {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+}
+.smc-tier-sub {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.smc-breakdown {
+  padding: 1.5rem 0;
+  border-top: 1px solid var(--c-border);
+  border-bottom: 1px solid var(--c-border);
+}
+.smc-bar {
+  display: flex;
+  height: 28px;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  margin-bottom: 1rem;
+  background: rgba(0, 0, 0, 0.03);
+}
+.smc-bar-fees {
+  width: 0%;
+  background: var(--c-accent);
+  transition: width 1.2s var(--ease-out) 0.4s;
+}
+.smc-bar-el {
+  width: 0%;
+  background: var(--c-el);
+  transition: width 1.2s var(--ease-out) 0.6s;
+}
+.smc-breakdown-text {
+  font-size: 0.95rem;
+  color: var(--text-body);
+}
+.smc-breakdown-text p {
+  margin: 0.2rem 0;
+}
+
+.smc-collective {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+}
+.smc-collective-lead {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 600;
+  color: var(--text-ink);
+  margin-bottom: 0.5rem;
+}
+.smc-collective p {
+  font-size: 0.95rem;
+  color: var(--text-body);
+  margin-bottom: 0.5rem;
+}
+
+/* Share */
+.smc-share {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--c-border);
+}
+.btn-share {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.4rem;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-ink);
+  background: var(--bg-warm);
+  border: 1.5px solid var(--c-border);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-share:hover {
+  border-color: var(--text-ink);
+  background: var(--bg-warm-alt);
+}
+.share-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 0.5rem;
+}
+
+.post-score-nudge {
+  text-align: center;
+  margin-top: 2rem;
+}
+.nudge-link {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  transition: color 0.2s;
+}
+.nudge-link:hover {
+  color: var(--text-ink);
+  opacity: 1;
+}
+.nudge-link svg {
+  animation: bob 2.4s ease-in-out infinite;
+}
+
+/* ========================
+   14. VISION (Act 4)
+   ======================== */
+#vision {
+  padding: var(--s-section) 0;
+  background: var(--bg-warm);
+}
+
+/* Street Scene */
+.street-scene-wrap {
+  margin: 3rem 0;
+  padding: 3rem 0;
+  background: var(--bg-warm-alt);
+}
+
+.street-scene {
+  position: relative;
+  height: 220px;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.street-ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: #c8bfa8;
+  border-radius: var(--r-sm) var(--r-sm) 0 0;
+}
+
+/* Buildings */
+.building {
+  position: absolute;
+  bottom: 30px;
+  border-radius: var(--r-sm) var(--r-sm) 0 0;
+  transition: all 0.8s var(--ease-out);
+  filter: grayscale(0.7) brightness(0.75);
+  opacity: 0.5;
+}
+.building.building-lit {
+  filter: grayscale(0) brightness(1);
+  opacity: 1;
+}
+
+.b-house {
+  width: 60px;
+  background: #d4a574;
+}
+.b-apt {
+  width: 55px;
+  background: #b8856e;
+}
+.b1 {
+  left: 5%;
+  height: 80px;
+}
+.b2 {
+  left: 18%;
+  height: 95px;
+  background: #c49060;
+}
+.b3 {
+  left: 31%;
+  height: 130px;
+  width: 55px;
+  background: #b8856e;
+}
+.b-school {
+  left: 44%;
+  width: 110px;
+  height: 90px;
+  background: #a0522d;
+}
+.b-community {
+  left: 62%;
+  width: 80px;
+  height: 75px;
+  background: #8b7355;
+}
+.b6 {
+  left: 76%;
+  height: 85px;
+  background: #c49060;
+}
+.b7 {
+  left: 89%;
+  height: 70px;
+}
+
+/* Solar panels */
+.solar-panels {
+  position: absolute;
+  top: -12px;
+  left: 10px;
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.6s var(--ease-out) 0.3s;
+}
+.building-lit .solar-panels {
+  opacity: 1;
+}
+.panel {
+  width: 28px;
+  height: 10px;
+  background: #2d5fa0;
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(45, 95, 160, 0.4);
+}
+
+/* Battery icon */
+.battery-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--c-el);
+  opacity: 0;
+  transition: opacity 0.6s 0.3s;
+}
+.building-lit .battery-icon {
+  opacity: 1;
+}
+
+/* Connection lines */
+.conn-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.conn-line {
+  fill: none;
+  stroke: var(--c-el);
+  stroke-width: 1.5;
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  opacity: 0.5;
+}
+.lines-active .conn-line {
+  animation: drawLine 1.8s var(--ease-out) forwards;
+}
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.conn-line:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.conn-line:nth-child(3) {
+  animation-delay: 0.3s;
+}
+.conn-line:nth-child(4) {
+  animation-delay: 0.45s;
+}
+.conn-line:nth-child(5) {
+  animation-delay: 0.6s;
+}
+.conn-line:nth-child(6) {
+  animation-delay: 0.75s;
+}
+
+/* Money loop */
+#money-loop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.loop-coin {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--c-el);
+  color: white;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.55rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  box-shadow: 0 0 12px rgba(90, 184, 102, 0.4);
+}
+.loop-active .loop-coin {
+  opacity: 1;
+  animation: orbit 6s linear infinite;
+}
+.c1 {
+  animation-delay: 0s !important;
+}
+.c2 {
+  animation-delay: -2s !important;
+}
+.c3 {
+  animation-delay: -4s !important;
+}
+
+@keyframes orbit {
+  0% {
+    left: 10%;
+    top: 50%;
+  }
+  25% {
+    left: 45%;
+    top: 15%;
+  }
+  50% {
+    left: 80%;
+    top: 50%;
+  }
+  75% {
+    left: 45%;
+    top: 75%;
+  }
+  100% {
+    left: 10%;
+    top: 50%;
+  }
+}
+
+/* Street steps */
+.street-narrative {
+  padding: 2rem 0;
+}
+
+.street-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--c-border);
+}
+.street-step:last-child {
+  border-bottom: none;
+}
+
+.ss-icon {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--c-green-soft);
+  border-radius: var(--r-sm);
+  color: var(--c-el);
+}
+
+.street-step h4 {
+  font-size: 1.05rem;
+  margin-bottom: 0.3rem;
+}
+.street-step p {
+  font-size: 0.95rem;
+  color: var(--text-body);
+}
+
+/* Money comparison */
+.money-comparison {
+  padding: var(--s-section) 0 0;
+}
+
+.mc-heading {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.mc-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.mc-col {
+  padding: 1.5rem;
+  border-radius: var(--r-lg);
+  background: white;
+  border: 1px solid var(--c-border);
+}
+
+.mc-label {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.mc-bar {
+  display: flex;
+  height: 30px;
+  border-radius: var(--r-sm);
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+.mc-seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.mc-seg span {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: white;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.mc-seg-fees {
+  background: var(--c-accent);
+}
+.mc-seg-el {
+  background: var(--c-el);
+}
+.mc-seg-shared {
+  background: #4898a0;
+}
+.mc-seg-remaining {
+  background: var(--c-moms);
+}
+
+.mc-note {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.mc-punchline {
+  text-align: center;
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  color: var(--text-ink);
+  margin-top: 2rem;
+}
+
+/* ========================
+   15. HONEST (Act 4.5)
+   ======================== */
+#honest {
+  padding: var(--s-section) 0;
+  background: var(--bg-warm-alt);
+}
+
+.honest-intro {
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  color: var(--text-muted);
+  margin-bottom: 2.5rem;
+  text-wrap: balance;
+}
+
+.honest-block {
+  margin-bottom: 2rem;
+  padding: 1.8rem;
+  background: white;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-md);
+}
+.honest-block h4 {
+  font-size: 0.95rem;
+  margin-bottom: 0.6rem;
+  color: var(--text-ink);
+}
+.honest-block p {
+  font-size: 0.95rem;
+  color: var(--text-body);
+  margin-bottom: 0.5rem;
+}
+.honest-block p:last-child {
+  margin-bottom: 0;
+}
+
+/* ========================
+   16. ABOUT
+   ======================== */
+#about {
+  padding: var(--s-section) 0;
+  background: var(--bg-warm);
+}
+
+.about-card {
+  padding: 2.5rem;
+  background: white;
+  border: 1px solid var(--c-border);
+  border-radius: var(--r-lg);
+}
+
+.about-header {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+.about-mark {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--text-ink);
+  color: white;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.about-header h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.2rem;
+}
+.about-desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.about-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+.about-item h4 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+.about-item p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.about-team {
+  display: flex;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--c-border);
+}
+.team-member {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.team-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-warm);
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.team-member span {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+/* ========================
+   17. INVITATION (Act 5)
+   ======================== */
+#invitation {
+  padding: var(--s-section) 0;
+  background: var(--bg-dark);
+  color: var(--text-light);
+}
+
+.invitation-content {
+  text-align: center;
+}
+
+.inv-overline {
+  font-size: clamp(1rem, 1.3vw, 1.15rem);
+  color: var(--text-light-muted);
+  margin-bottom: 0.5rem;
+  text-wrap: balance;
+}
+
+.inv-heading {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  color: var(--text-light);
+  margin-bottom: 2.5rem;
+  text-wrap: balance;
+}
+
+.inv-body {
+  max-width: 540px;
+  margin: 0 auto 2rem;
+}
+.inv-body p {
+  color: var(--text-light-muted);
+  margin-bottom: 1rem;
+  font-size: clamp(1rem, 1.2vw, 1.1rem);
+}
+.inv-body strong {
+  color: var(--text-light);
+}
+.inv-body em {
+  color: var(--text-light-muted);
+}
+
+.inv-nudge {
+  max-width: 480px;
+  margin: 0 auto 3rem;
+}
+.inv-nudge p {
+  color: var(--text-light-muted);
+  margin-bottom: 0.6rem;
+}
+
+.inv-cta-block {
+  max-width: 440px;
+  margin: 0 auto;
+}
+.inv-cta-heading {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+}
+
+/* Dark form overrides */
+#invitation .mirror-form {
+  background: var(--bg-dark-mid);
+  border-color: var(--c-border-light);
+}
+#invitation .field input {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--c-border-light);
+  color: var(--text-light);
+}
+#invitation .field input::placeholder {
+  color: var(--text-light-muted);
+}
+#invitation .field input:focus {
+  border-color: var(--c-el);
+}
+#invitation .field label {
+  color: var(--text-light-muted);
+}
+#invitation .btn-score {
+  background: var(--c-el);
+  color: white;
+}
+
+.inv-secondary {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-light-muted);
+  border-bottom: 1px solid var(--c-border-light);
+  padding-bottom: 2px;
+  transition: color 0.2s;
+}
+.inv-secondary:hover {
+  color: var(--text-light);
+  opacity: 1;
+}
+
+/* ========================
+   18. REFERRED FRIEND
+   ======================== */
+#referred {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-warm);
+  padding: 4rem 0;
+}
+
+.referred-content {
+  text-align: center;
+}
+
+.ref-badge {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+.ref-hook {
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem);
+  color: var(--text-body);
+  margin-bottom: 2rem;
+}
+.ref-hook p {
+  margin-bottom: 0.5rem;
+}
+.ref-hook strong {
+  color: var(--text-ink);
+}
+
+.ref-h1 {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  margin-bottom: 2.5rem;
+}
+
+#referred .mirror-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* ========================
+   19. FOOTER
+   ======================== */
+.site-footer {
+  padding: 2rem 0;
+  background: var(--bg-dark);
+  border-top: 1px solid var(--c-border-light);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-brand {
+  font-size: 0.8rem;
+  color: var(--text-light-muted);
+}
+.footer-brand strong {
+  color: var(--text-light);
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+.footer-links a {
+  font-size: 0.8rem;
+  color: var(--text-light-muted);
+}
+.footer-links a:hover {
+  color: var(--text-light);
+  opacity: 1;
+}
+
+/* ========================
+   20. SHARE TOAST
+   ======================== */
+.share-toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.7rem 1.5rem;
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: white;
+  background: var(--text-ink);
+  border-radius: var(--r-md);
+  z-index: 2000;
+  animation: fadeUp 0.4s var(--ease-out);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================
+   21. RESPONSIVE
+   ======================== */
+@media (max-width: 768px) {
+  :root {
+    --s-section: clamp(4rem, 10vh, 7rem);
+  }
+
+  .coop-story {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .coop-marker {
+    flex-direction: row;
+    width: auto;
+    gap: 0.8rem;
+  }
+
+  .mc-cols {
+    grid-template-columns: 1fr;
+  }
+
+  .about-row {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .mirror-fields {
+    flex-direction: column;
+  }
+
+  .step {
+    min-height: 60vh;
+  }
+
+  .krone-bar-outer {
+    height: 36px;
+  }
+
+  .street-scene {
+    height: 160px;
+  }
+
+  .building {
+    transform: scale(0.85);
+    transform-origin: bottom center;
+  }
+
+  .score-mirror-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .about-card {
+    padding: 1.5rem;
+  }
+
+  .fourth-time {
+    padding: 1.5rem;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-h1 {
+    font-size: 2.6rem;
+  }
+
+  .guess-options {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .guess-block {
+    padding: 1.5rem;
+  }
+
+  .step-ore {
+    font-size: 2rem;
+  }
+
+  .smc-number {
+    font-size: 3rem;
+  }
+}
+
+/* ========================
+   22. LANGUAGE TOGGLE
+   ======================== */
+html[data-lang="en"] .lang-da { display: none !important; }
+html[data-lang="da"] .lang-en { display: none !important; }
+
+.lang-toggle {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 1500;
+  display: flex;
+  background: var(--bg-dark);
+  border-radius: 20px;
+  padding: 3px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--c-border-light);
+}
+
+.lang-btn {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  padding: 0.4rem 0.7rem;
+  border: none;
+  border-radius: 17px;
+  background: transparent;
+  color: var(--text-light-muted);
+  cursor: pointer;
+  transition: all 0.25s var(--ease-out);
+}
+
+.lang-btn:hover {
+  color: var(--text-light);
+}
+
+.lang-btn--active {
+  background: white;
+  color: var(--text-ink);
+}
+
+@media (max-width: 768px) {
+  .lang-toggle {
+    bottom: 1rem;
+    right: 1rem;
+  }
+}
+
+/* ========================
+   23. REDUCED MOTION
+   ======================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .scroll-reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .anim-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .conn-line {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+  }
+}

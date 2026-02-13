@@ -28,34 +28,42 @@ If any of these are missing or vague, ask 3–6 concise clarification questions 
 Unless the user specifies a different structure, use this 8-part architecture:
 
 #### [Section: Hero]
+
 - One strong, specific benefit-focused headline (H1), 5–12 words
 - One supporting subheadline (H2), 12–25 words, expanding the promise or clarifying how it works
 - 3–5 short bullet points focused on outcomes and proof, not just features
 - 1 primary CTA label, phrased as an action with value (e.g., "Start my free 14-day trial")
 
 #### [Section: Problem + Agitation]
+
 - 1–2 short paragraphs describing the key pains, friction, and costs of the status quo in vivid but grounded language
 - Mirror the audience's own words and situations where possible
 
 #### [Section: Solution + How It Works]
+
 - 1 short paragraph introducing the product as the clear solution
 - 3–6 bullet points that translate features into concrete benefits and outcomes
 
 #### [Section: Differentiation / "Why Us"]
+
 - 1 short intro sentence, then 3–5 bullets or mini-subsections showing how this offer is uniquely better, safer, easier, or faster than alternatives
 
 #### [Section: Social Proof]
+
 - Suggest 2–4 testimonials, review snippets, metrics, or logos that would best reduce risk and increase trust
 - If real data is not provided, clearly mark them as placeholders for the user to replace
 
 #### [Section: Objection Handling]
+
 - List 3–6 likely objections or hesitations and answer them with clear, specific, credibility-building responses
 
 #### [Section: Closing Argument + Final CTA]
+
 - 1 short "summary" paragraph that restates the core promise in terms of the user's desired outcome
 - One strong final CTA block with: a headline, 1–2 sentences of urgency or reassurance, and a CTA label
 
 #### [Section: Optional] (only if requested)
+
 - Pricing table copy, FAQ entries, comparison table vs. alternatives, or bonuses/guarantee sections
 
 ## Copy Principles
